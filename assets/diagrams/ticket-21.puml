@@ -1,0 +1,24 @@
+@startuml
+skinparam monochrome true
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam conditionStyle insideDiamond
+skinparam ranksep 110
+skinparam nodesep 80
+[*] --> Выпущена
+Выпущена -down-> Активна : активировать
+state Активна {
+ [*] --> Обычный
+ state "Обычный режим" as Обычный
+ state "Превышен лимит" as Лимит
+ Обычный --> Лимит : лимитПревышен
+ Лимит --> Обычный : лимитВосстановлен
+}
+Активна -right-> Заблокирована : заблокировать
+Заблокирована -left-> Активна : разблокировать [срок OK]
+Активна -down-> Просрочена : срокИстёк
+Заблокирована --> Просрочена : срокИстёк
+Заблокирована --> Закрыта : закрыть
+Просрочена -down-> Закрыта : закрыть
+Закрыта --> [*]
+@enduml

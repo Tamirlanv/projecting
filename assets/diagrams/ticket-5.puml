@@ -1,0 +1,29 @@
+@startuml
+skinparam monochrome true
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam conditionStyle insideDiamond
+class Университет {
+ -название: String
+}
+class Факультет {
+ -название: String
+}
+class Группа {
+ -номер: String
+}
+class Студент {
+ -id: Integer
+ -фио: String
+}
+class Преподаватель {
+ -id: Integer
+ -фио: String
+ +вестиЗанятие(): void
+}
+Университет "1" *-- "1..*" Факультет
+Факультет "1" -- "0..*" Группа
+Группа "0..1" o-- "0..*" Студент
+Факультет "1" -- "0..*" Преподаватель
+Преподаватель "0..*" -- "0..*" Группа : обучает
+@enduml

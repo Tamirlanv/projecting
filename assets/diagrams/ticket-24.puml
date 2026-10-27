@@ -1,0 +1,25 @@
+@startuml
+skinparam monochrome true
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam conditionStyle insideDiamond
+actor Клиент as C
+participant Банкомат as ATM
+participant Банк as B
+participant Счёт as A
+C -> ATM : снять(сумма)
+ATM -> B : запроситьСнятие(сумма)
+B -> A : проверитьИCписать(сумма)
+alt достаточно средств
+ A --> B : списание подтверждено
+ B --> ATM : разрешение
+ ATM --> C : выдать наличные
+ opt клиент запросил чек
+  ATM --> C : напечатать чек
+ end
+else недостаточно средств
+ A --> B : отказ
+ B --> ATM : отказ
+ ATM --> C : сообщить об отказе
+end
+@enduml

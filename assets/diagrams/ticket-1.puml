@@ -1,0 +1,26 @@
+@startuml
+skinparam monochrome true
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam conditionStyle insideDiamond
+left to right direction
+actor Читатель as R
+actor Библиотекарь as L
+rectangle "Онлайн-библиотека" {
+ usecase "Искать книгу" as Search
+ usecase "Бронировать книгу" as Reserve
+ usecase "Продлить срок" as ExtendLoan
+ usecase "Выдать книгу" as Issue
+ usecase "Принять книгу" as Return
+ usecase "Добавить книгу" as Add
+ usecase "Проверить доступность" as Check
+}
+R -- Search
+R -- Reserve
+R -- ExtendLoan
+L -- Issue
+L -- Return
+L -- Add
+Reserve ..> Check : <<include>>
+Issue ..> Check : <<include>>
+@enduml

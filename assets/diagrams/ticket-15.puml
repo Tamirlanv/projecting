@@ -1,0 +1,20 @@
+@startuml
+skinparam monochrome true
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam conditionStyle insideDiamond
+start
+:Выбрать напиток;
+if (Вода есть?) then (да)
+ fork
+  :Нагреть воду;
+ fork again
+  :Смолоть зёрна;
+ end fork
+ :Заварить кофе;
+ :Выдать напиток;
+else (нет)
+ :Показать ошибку;
+endif
+stop
+@enduml

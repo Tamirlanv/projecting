@@ -1,0 +1,25 @@
+@startuml
+skinparam monochrome true
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam conditionStyle insideDiamond
+scale 10 as 70 pixels
+robust "Дверца" as Door
+robust "Магнетрон" as Magnetron
+robust "Таймер" as Timer
+@0
+Door is Открыта
+Magnetron is Выключен
+Timer is Готов
+@1
+Door is Закрыта
+@2
+Timer is "Отсчёт 60 с"
+Magnetron is Включён
+Timer -> Magnetron : старт
+@62
+Timer is "Завершён, сигнал"
+Magnetron is Выключен
+Timer -> Magnetron : стоп
+@2 <-> @62 : {60 с}
+@enduml

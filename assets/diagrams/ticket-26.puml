@@ -1,0 +1,17 @@
+@startuml
+skinparam monochrome true
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam conditionStyle insideDiamond
+top to bottom direction
+object "Пользователь" as U
+object "ФормаВхода" as F
+object "СерверАвторизации" as A
+object "БазаДанных" as D
+U -right-> F : 1: войти()
+F -down-> A : 1.1: проверить()
+A -left-> D : 1.1.1: найти()
+D --> A : 1.1.2: запись с хешем
+A --> F : 1.2: результат проверки
+F --> U : 2: сессия или ошибка
+@enduml

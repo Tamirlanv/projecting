@@ -1,0 +1,34 @@
+@startuml
+skinparam monochrome true
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam conditionStyle insideDiamond
+object "ivan:Читатель" as ivan {
+ фио = "Иванов"
+ номерБилета = "C-17"
+}
+object "b1:Книга" as b1 {
+ название = "Алгоритмы"
+}
+object "b2:Книга" as b2 {
+ название = "Проектирование ПО"
+}
+object "e1:Экземпляр" as e1 {
+ инвНомер = "E-101"
+}
+object "e2:Экземпляр" as e2 {
+ инвНомер = "E-202"
+}
+object "v1:Выдача" as v1 {
+ датаВозврата = null
+}
+object "v2:Выдача" as v2 {
+ датаВозврата = null
+}
+ivan -- v1
+ivan -- v2
+v1 -- e1
+v2 -- e2
+b1 -- e1
+b2 -- e2
+@enduml

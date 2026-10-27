@@ -1,0 +1,37 @@
+@startuml
+skinparam monochrome true
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam conditionStyle insideDiamond
+|Покупатель|
+start
+:Оформить заказ;
+|Система|
+:Запросить наличие;
+|Склад|
+:Проверить остаток;
+|Система|
+if (Товар есть?) then (да)
+ |Покупатель|
+ :Выбрать способ оплаты;
+ if (Картой?) then (да)
+  |Система|
+  :Выполнить платёж;
+  if (Платёж успешен?) then (да)
+  else (нет)
+   :Показать отказ;
+   stop
+  endif
+ else (наличные)
+  |Система|
+  :Указать оплату при получении;
+ endif
+ |Склад|
+ :Собрать заказ;
+ |Система|
+ :Подтвердить заказ;
+else (нет)
+ :Сообщить об отсутствии;
+endif
+stop
+@enduml

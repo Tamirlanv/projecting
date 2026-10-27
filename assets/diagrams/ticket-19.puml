@@ -1,0 +1,14 @@
+@startuml
+skinparam monochrome true
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam conditionStyle insideDiamond
+[*] --> Создан
+Создан --> Оплачен : оплатить [платёж подтверждён]
+Оплачен --> Собран : собрать [все позиции доступны]
+Собран --> Доставлен : доставить [получение подтверждено]
+Создан --> Отменён : отменить / снять резерв
+Оплачен --> Отменён : отменить / инициировать возврат
+Доставлен --> [*]
+Отменён --> [*]
+@enduml

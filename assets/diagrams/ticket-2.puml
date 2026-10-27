@@ -1,0 +1,30 @@
+@startuml
+skinparam monochrome true
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam conditionStyle insideDiamond
+left to right direction
+actor Клиент as C
+actor "Банковская система" as B
+rectangle Банкомат {
+ usecase "Снять наличные" as Cash
+ usecase "Проверить баланс" as Balance
+ usecase "Пополнить телефон" as Phone
+ usecase "Сменить ПИН-код" as Change
+ usecase "Проверить ПИН-код" as Pin
+ usecase "Напечатать чек" as Receipt
+}
+C -- Cash
+C -- Balance
+C -- Phone
+C -- Change
+B -- Cash
+B -- Balance
+B -- Phone
+B -- Change
+Cash ..> Pin : <<include>>
+Balance ..> Pin : <<include>>
+Phone ..> Pin : <<include>>
+Change ..> Pin : <<include>>
+Receipt ..> Cash : <<extend>> [клиент запросил чек]
+@enduml

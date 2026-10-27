@@ -1,0 +1,24 @@
+@startuml
+skinparam monochrome true
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam conditionStyle insideDiamond
+scale 5 as 70 pixels
+robust "Кнопка вызова" as Button
+robust "Лифт" as Lift
+robust "Двери" as Doors
+@0
+Button is Нажата
+Lift is Движение
+Doors is Закрыты
+Button -> Lift : вызов
+@1
+Button is Отпущена
+@25
+Lift is НаЭтаже
+Doors is Открыты
+@31
+Doors is Закрыты
+@0 <-> @25 : {tOpen - tCall <= 30 с}
+@25 <-> @31 : {tClose - tOpen >= 5 с}
+@enduml

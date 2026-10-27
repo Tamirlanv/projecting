@@ -1,0 +1,24 @@
+@startuml
+skinparam monochrome true
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam conditionStyle insideDiamond
+actor Пользователь as U
+boundary ФормаВхода as F
+control СерверАвторизации as A
+database БазаДанных as D
+U -> F : ввести логин и пароль
+F -> A : войти(логин, пароль)
+activate A
+A -> D : найтиПользователя(логин)
+D --> A : запись с хешем
+A -> A : проверитьХеш()
+alt пароль верный
+ A --> F : сессия
+ F --> U : показать кабинет
+else пароль неверный / пользователь не найден
+ A --> F : ошибка входа
+ F --> U : показать ошибку
+end
+deactivate A
+@enduml

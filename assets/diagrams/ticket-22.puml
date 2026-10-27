@@ -1,0 +1,18 @@
+@startuml
+skinparam monochrome true
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam conditionStyle insideDiamond
+[*] --> Ожидание
+state "Движение вверх" as Up
+state "Движение вниз" as Down
+state "Двери открыты" as Open
+Ожидание --> Up : вызов [цель выше и двери закрыты]
+Ожидание --> Down : вызов [цель ниже и двери закрыты]
+Ожидание --> Open : вызов [цель на текущем этаже]
+Up --> Open : этажДостигнут
+Down --> Open : этажДостигнут
+Open : entry / открытьДвери(); запуститьТаймер()
+Open : exit / закрытьДвери()
+Open --> Ожидание : таймерИстёк [нет препятствия]
+@enduml

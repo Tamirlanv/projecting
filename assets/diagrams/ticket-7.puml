@@ -1,0 +1,23 @@
+@startuml
+skinparam monochrome true
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam conditionStyle insideDiamond
+abstract class ТранспортноеСредство {
+ #номер: String
+ #скорость: Real
+ {abstract} +двигаться(): void
+}
+class Автобус {
+ +двигаться(): void
+}
+class Трамвай {
+ +двигаться(): void
+}
+class Такси {
+ +двигаться(): void
+}
+Автобус --|> ТранспортноеСредство
+Трамвай --|> ТранспортноеСредство
+Такси --|> ТранспортноеСредство
+@enduml

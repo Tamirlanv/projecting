@@ -1,0 +1,19 @@
+@startuml
+skinparam monochrome true
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam conditionStyle insideDiamond
+left to right direction
+actor Пациент as P
+rectangle "Система записи" {
+ usecase "Записаться на приём" as Book
+ usecase "Проверить доступность слота" as Check
+}
+P -- Book
+Book ..> Check : <<include>>
+note bottom of Book
+  Предусловие: пациент идентифицирован
+  Успех: запись сохранена, слот занят
+  Альтернатива: слот занят -> новый выбор
+end note
+@enduml

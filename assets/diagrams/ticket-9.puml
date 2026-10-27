@@ -1,0 +1,36 @@
+@startuml
+skinparam monochrome true
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam conditionStyle insideDiamond
+class Покупатель {
+ -id: Integer
+ -email: String
+ +оформитьЗаказ(): Заказ
+}
+class Заказ {
+ -номер: String
+ -статус: String
+ +сумма(): Decimal
+ +оплатить(): void
+}
+class ПозицияЗаказа {
+ -количество: Integer
+ -ценаПокупки: Decimal
+ +стоимость(): Decimal
+}
+class Товар {
+ -sku: String
+ -название: String
+ -цена: Decimal
+ +изменитьЦену(p: Decimal): void
+}
+class Категория {
+ -название: String
+ +добавитьТовар(t: Товар): void
+}
+Покупатель "1" -- "0..*" Заказ
+Заказ "1" *-- "1..*" ПозицияЗаказа
+Товар "1" -- "0..*" ПозицияЗаказа
+Категория "1" -- "0..*" Товар
+@enduml

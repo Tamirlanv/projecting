@@ -1,0 +1,17 @@
+@startuml
+skinparam monochrome true
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam conditionStyle insideDiamond
+actor Отправитель as S
+participant Клиент as C
+participant Сервер as Server
+actor Получатель as R
+S -> C : написать(текст)
+C ->> Server : отправить(id, текст)
+par доставка
+ Server ->> R : новоеСообщение(id, текст)
+else сохранение
+ Server -> Server : сохранитьВИстории(id, текст)
+end
+@enduml

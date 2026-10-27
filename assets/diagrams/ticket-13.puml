@@ -1,0 +1,24 @@
+@startuml
+skinparam monochrome true
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam conditionStyle insideDiamond
+component "Веб-интерфейс" as Web
+component Каталог as Catalog
+component Заказы as Orders
+component Оплата as Pay
+component "База данных" as DB
+interface ICatalog
+interface IOrders
+interface IPayment
+interface IDataAccess
+Web .down.> ICatalog : требует
+Web .down.> IOrders : требует
+ICatalog -down- Catalog : предоставляет
+IOrders -down- Orders : предоставляет
+Orders .down.> IPayment : требует
+IPayment -down- Pay : предоставляет
+Orders .down.> IDataAccess : требует
+Catalog .down.> IDataAccess : требует
+IDataAccess -down- DB : предоставляет
+@enduml

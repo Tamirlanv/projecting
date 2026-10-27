@@ -1,0 +1,25 @@
+@startuml
+skinparam monochrome true
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam conditionStyle insideDiamond
+node "Смартфон пациента" <<device>> as Phone {
+ artifact "Браузер / клиент" as Client
+}
+node "Веб-сервер" as Web {
+ artifact "index.html, app.js" as Static
+}
+node "Сервер приложений" as App {
+ artifact "clinic.war" as Clinic
+}
+node "Сервер БД" as DB {
+ artifact "clinic schema + data" as Data
+}
+node "SMS-шлюз (внешний)" as SMS {
+ artifact "SMS API" as API
+}
+Phone -- Web : HTTPS
+Web -- App : HTTP(S)
+App -- DB : PostgreSQL / TLS
+App -- SMS : HTTPS
+@enduml

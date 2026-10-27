@@ -1,0 +1,28 @@
+@startuml
+skinparam monochrome true
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam conditionStyle insideDiamond
+interface Оплачиваемое {
+ +суммаКОплате(): Decimal
+ +оплатить(): void
+}
+class Заказ {
+ -итог: Decimal
+ +суммаКОплате(): Decimal
+ +оплатить(): void
+}
+class Штраф {
+ -размер: Decimal
+ +суммаКОплате(): Decimal
+ +оплатить(): void
+}
+class Подписка {
+ -тариф: Decimal
+ +суммаКОплате(): Decimal
+ +оплатить(): void
+}
+Заказ ..|> Оплачиваемое
+Штраф ..|> Оплачиваемое
+Подписка ..|> Оплачиваемое
+@enduml

@@ -1,0 +1,20 @@
+@startuml
+skinparam monochrome true
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam conditionStyle insideDiamond
+class Студент {
+ id: Integer
+ фио: String
+}
+class Дисциплина {
+ код: String
+ название: String
+}
+Студент "0..*" -- "0..*" Дисциплина : сдаёт
+class РезультатЭкзамена {
+ оценка: Integer
+ дата: Date
+}
+(Студент, Дисциплина) .. РезультатЭкзамена
+@enduml

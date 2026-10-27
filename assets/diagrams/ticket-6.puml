@@ -1,0 +1,35 @@
+@startuml
+skinparam monochrome true
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam conditionStyle insideDiamond
+class Книга {
+ -isbn: String
+ -название: String
+ +добавитьЭкземпляр(): Экземпляр
+}
+class Экземпляр {
+ -инвНомер: String
+ -статус: String
+ +доступен(): Boolean
+}
+class Читатель {
+ -номерБилета: String
+ -фио: String
+ +взять(): void
+}
+class Выдача {
+ -датаВыдачи: Date
+ -срокВозврата: Date
+ -датаВозврата: Date [0..1]
+ +закрыть(): void
+ +продлить(): void
+}
+Книга "1" *-- "0..*" Экземпляр
+Читатель "1" -- "0..*" Выдача
+Экземпляр "1" -- "0..*" Выдача
+note bottom of Выдача
+ {У экземпляра не более одной
+ незакрытой выдачи одновременно}
+end note
+@enduml

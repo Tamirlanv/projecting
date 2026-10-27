@@ -1,0 +1,27 @@
+@startuml
+skinparam monochrome true
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam conditionStyle insideDiamond
+actor Покупатель as C
+participant Корзина as Cart
+participant Склад as Stock
+participant Оплата as Pay
+C -> Cart : оформить()
+create participant Заказ as Order
+Cart -> Order : <<create>>(покупатель)
+loop для каждой позиции корзины
+ Cart -> Order : добавитьПозицию(товар, количество)
+ Order -> Stock : резервировать(товар, количество)
+ Stock --> Order : результат
+ break резерв не создан
+  Order -> Stock : освободитьРезервы(заказ)
+  Order --> Cart : ошибка наличия
+  Cart --> C : оформление прекращено
+ end
+end
+Order -> Pay : оплатить(сумма)
+Pay --> Order : результат платежа
+Order --> Cart : результат оформления
+Cart --> C : показать результат
+@enduml

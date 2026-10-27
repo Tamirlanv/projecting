@@ -1,0 +1,22 @@
+@startuml
+skinparam monochrome true
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam conditionStyle insideDiamond
+start
+:Подать документы;
+repeat
+ :Проверить пакет документов;
+ if (Пакет полный?) then (да)
+ else (нет)
+  :Сообщить о недостающем;
+  :Доработать документы;
+ endif
+repeat while (Пакет неполный?) is (да) not (нет)
+if (Условия приёма выполнены?) then (да)
+ :Зачислить;
+else (нет)
+ :Оформить отказ;
+endif
+stop
+@enduml

@@ -1,0 +1,23 @@
+@startuml
+skinparam monochrome true
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam conditionStyle insideDiamond
+left to right direction
+actor Гость as G
+actor Покупатель as C
+actor Администратор as A
+C --|> G
+rectangle "Интернет-магазин" {
+ usecase "Просмотреть каталог" as Browse
+ usecase "Зарегистрироваться" as Register
+ usecase "Оформить заказ" as Order
+ usecase "Оплатить заказ" as Pay
+ usecase "Управлять товарами" as Manage
+}
+G -- Browse
+G -- Register
+C -- Order
+C -- Pay
+A -- Manage
+@enduml

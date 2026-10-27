@@ -1,0 +1,23 @@
+@startuml
+skinparam monochrome true
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam conditionStyle insideDiamond
+scale 15 as 90 pixels
+robust "Светофор для машин" as Cars
+robust "Светофор для пешеходов" as Walk
+@0
+Cars is Зелёный
+Walk is Красный
+@40
+Cars is Жёлтый
+@45
+Cars is Красный
+Walk is Зелёный
+@90
+Cars is Зелёный
+Walk is Красный
+@0 <-> @40 : 40 с
+@40 <-> @45 : 5 с
+@45 <-> @90 : 45 с
+@enduml

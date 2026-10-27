@@ -1,0 +1,28 @@
+@startuml
+skinparam monochrome true
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam conditionStyle insideDiamond
+start
+:Проверить билет;
+if (Билет действителен?) then (да)
+else (нет)
+ :Отказать: недействительный билет;
+ stop
+endif
+:Проверить задолженность;
+if (Долг отсутствует?) then (да)
+else (нет)
+ :Отказать: задолженность;
+ stop
+endif
+:Найти экземпляр;
+if (Экземпляр доступен?) then (да)
+ :Сформировать карточку;
+ :Карточка выдачи; <<task>>
+ :Зарегистрировать и выдать книгу;
+else (нет)
+ :Сообщить об отсутствии;
+endif
+stop
+@enduml

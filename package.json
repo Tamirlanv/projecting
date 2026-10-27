@@ -1,0 +1,10 @@
+{
+  "name": "projecting-exam-prep",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Локальный тренажёр по 30 экзаменационным билетам по проектированию ПО",
+  "scripts": {
+    "start": "python3 -m http.server 4173 --bind 127.0.0.1",
+    "test": "node --test tests/check.mjs"
+  }
+}

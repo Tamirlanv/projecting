@@ -1,0 +1,20 @@
+@startuml
+skinparam monochrome true
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam conditionStyle insideDiamond
+package Студенты as Students {}
+package "Учебный процесс" as Study {}
+package Расписание as Schedule {}
+package Отчёты as Reports {}
+package "Общие сервисы" as Common {}
+Study ..> Students
+Schedule ..> Study
+Reports ..> Students
+Reports ..> Study
+Reports ..> Schedule
+Students ..> Common
+Study ..> Common
+Schedule ..> Common
+Reports ..> Common
+@enduml

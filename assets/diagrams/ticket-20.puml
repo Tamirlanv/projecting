@@ -1,0 +1,16 @@
+@startuml
+skinparam monochrome true
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam conditionStyle insideDiamond
+[*] --> Дневной
+state Дневной {
+ [*] --> Красный
+ Красный --> Зелёный : after(45s)
+ Зелёный --> Жёлтый : after(40s)
+ Жёлтый --> Красный : after(5s)
+}
+state "Мигающий жёлтый" as Night
+Дневной --> Night : ночнойРежим
+Night --> Дневной : дневнойРежим
+@enduml
